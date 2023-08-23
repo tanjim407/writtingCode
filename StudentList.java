@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class StudentList {
 
+	private static final BufferedWriter s = null;
+
 	public static String getLineFromFile()throws Exception{
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
 			String line = bufferedReader.readLine();
@@ -19,6 +21,9 @@ public class StudentList {
         return new BufferedWriter(new FileWriter("students.txt", true));
     }
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		if (args.length != 1) {
             System.err.println("Invalid number of arguments");
@@ -55,11 +60,13 @@ public class StudentList {
 			System.out.println("Loading data ...");
 			try {
 				
-				BufferedWriter bufferWritter=getFileBufferedWriter();
+				
 				String t = args[0].substring(1);
 				
 				String format = "dd/mm/yyyy-hh:mm:ss a";
-				s.write(", " + t + "\nList last updated on " + new SimpleDateFormat(format).format(new Date()));
+
+				String str = ", " + t + "\nList last updated on " + new SimpleDateFormat(format).format(new Date());
+				s.write(str);
 				s.close();
 			} 
 			catch (Exception e) {
