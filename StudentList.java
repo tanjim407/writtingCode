@@ -1,6 +1,4 @@
 import java.io.*;
-import java.text.DateFormat;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.text.SimpleDateFormat;
 
@@ -9,8 +7,9 @@ import java.util.Random;
 
 public class StudentList {
 
-	private static final BufferedWriter s = null;
+	
 
+//Refactoring duplicate file and call getLineFromFile function for getting data
 	public static String getLineFromFile()throws Exception{
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
 			String line = bufferedReader.readLine();
@@ -25,6 +24,7 @@ public class StudentList {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// number of arg is invaild
 		if (args.length != 1) {
             System.err.println("Invalid number of arguments");
             return;
@@ -34,7 +34,7 @@ public class StudentList {
 		{
 			System.out.println(Constants.MSG_LOADED_DATA);
 			try {				
-				
+				//printing student name
 				for (String j : getLineFromFile().split(Constants.WORDS_SPLIT_REGEX)) {
 					System.out.println(j.trim());
 		                           }
@@ -42,12 +42,13 @@ public class StudentList {
 			 catch (Exception e) {
 			}
 			System.out.println(Constants.MSG_LOADED_DATA);
+			//check arg r
 		} else if (args[0].equals(Constants.ARG_SHOW_RANDOM_DATA))
 		 {
 			System.out.println(Constants.MSG_LOADING_DATA);
 			try {
 				
-				
+				//print a random data
 				String i[] =  getLineFromFile().split(Constants.WORDS_SPLIT_REGEX);
 				System.out.println(i[new Random().nextInt(i.length)]);
 			}
@@ -55,6 +56,7 @@ public class StudentList {
 			}
 			System.out.println(Constants.MSG_LOADED_DATA);
 		}
+		//check arg '+'
 		 else if (args[0].contains(Constants.ARG_ADD_DATA))
 		  {
 			System.out.println("Loading data ...");
@@ -78,7 +80,7 @@ public class StudentList {
 		 {
 			System.out.println("Loading data ...");
 			try {
-							 	
+				//listing data in array and check for finding data in substring			 	
 		         if (Arrays.asList(getLineFromFile().split(Constants.WORDS_SPLIT_REGEX)).contains(args[0].substring(1))) {
                     System.out.println(Constants.MSG_DATA_FOUND);
                 } else {
@@ -96,7 +98,7 @@ public class StudentList {
 			try {
 				
 				
-				
+				//counting number of string and words.  
 				System.out.println(getLineFromFile().split(Constants.WORDS_SPLIT_REGEX).length/2 + " word(s) found " + Constants.MSG_WORDS_FOUND);
 
 			} 
