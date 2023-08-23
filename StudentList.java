@@ -15,12 +15,13 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
+				BufferedReader students = new BufferedReader(
 						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String r = s.readLine();
-				String i[] = r.split(", ");
-				for (String j : i) {
+								new FileInputStream("students.txt"))
+								);
+				String studentName = students.readLine();
+				String StudentNames[] = studentName.split(", ");
+				for (String j : StudentNames) {
 					System.out.println(j.trim());
 		                           }
 			}
@@ -31,13 +32,13 @@ public class StudentList {
 		 {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
+				BufferedReader students = new BufferedReader(
 						new InputStreamReader(
 								new FileInputStream("students.txt")));
-				String r = s.readLine();
-				String i[] = r.split(", ");
-				Random x = new Random();
-				int y = x.nextInt(i.length);
+				String studentName = students.readLine();
+				String i[] = studentName.split(", ");
+				Random random = new Random();
+				int y = random.nextInt(i.length);
 				System.out.println(i[y]);
 			}
 			 catch (Exception e) {
@@ -51,11 +52,11 @@ public class StudentList {
 				BufferedWriter s = new BufferedWriter(
 						new FileWriter("students.txt", true));
 				String t = args[0].substring(1);
-				Date d = new Date();
-				String df = "dd/mm/yyyy-hh:mm:ss a";
-				DateFormat dateFormat = new SimpleDateFormat(df);
-				String fd = dateFormat.format(d);
-				s.write(", " + t + "\nList last updated on " + fd);
+				Date date= new Date();
+				String format = "dd/mm/yyyy-hh:mm:ss a";
+				DateFormat dateFormat = new SimpleDateFormat(format);
+				String formatDate = dateFormat.format(date);
+				s.write(", " + t + "\nList last updated on " + formatDate);
 				s.close();
 			} 
 			catch (Exception e) {
