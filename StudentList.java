@@ -1,6 +1,9 @@
 import java.io.*;
 import java.text.DateFormat;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.Random;
 
@@ -22,32 +25,32 @@ public class StudentList {
             return;
         }
 		// Check arguments
-		if (args[0].equals("a")) 
+		if (args[0].equals(Constants.ARG_LIST_DATA)) 
 		{
-			System.out.println("Loading data ...");
+			System.out.println(Constants.MSG_LOADED_DATA);
 			try {				
 				
-				for (String j : getLineFromFile().split(", ")) {
+				for (String j : getLineFromFile().split(Constants.WORDS_SPLIT_REGEX)) {
 					System.out.println(j.trim());
 		                           }
 			}
 			 catch (Exception e) {
 			}
-			System.out.println("Data Loaded.");
-		} else if (args[0].equals("r"))
+			System.out.println(Constants.MSG_LOADED_DATA);
+		} else if (args[0].equals(Constants.ARG_SHOW_RANDOM_DATA))
 		 {
-			System.out.println("Loading data ...");
+			System.out.println(Constants.MSG_LOADING_DATA);
 			try {
 				
 				
-				String i[] =  getLineFromFile().split(", ");
+				String i[] =  getLineFromFile().split(Constants.WORDS_SPLIT_REGEX);
 				System.out.println(i[new Random().nextInt(i.length)]);
 			}
 			 catch (Exception e) {
 			}
-			System.out.println("Data Loaded.");
+			System.out.println(Constants.MSG_LOADED_DATA);
 		}
-		 else if (args[0].contains("+"))
+		 else if (args[0].contains(Constants.ARG_ADD_DATA))
 		  {
 			System.out.println("Loading data ...");
 			try {
@@ -64,22 +67,18 @@ public class StudentList {
 
 			System.out.println("Data Loaded.");
 		}
-		 else if (args[0].contains("?")) 
+		 else if (args[0].contains(Constants.ARG_FIND_DATA)) 
 		 {
 			System.out.println("Loading data ...");
 			try {
-				
-				
-				String i[] = getLineFromFile().split(", ");
-				boolean done = false;
-				String t = args[0].substring(1);
-				for (int idx = 0; idx < i.length && !done; idx++) {
-					if (i[idx].equals(t)) {
-						System.out.println("We found it!");
-						done = true;
+							 	
+		         if (Arrays.asList(getLineFromFile().split(Constants.WORDS_SPLIT_REGEX)).contains(args[0].substring(1))) {
+                    System.out.println(Constants.MSG_DATA_FOUND);
+                } else {
+                    System.out.println(Constants.MSG_DATA_NOT_FOUND);
 					}
 				}
-			}
+			
 			 catch (Exception e) {
 			}
 			System.out.println("Data Loaded.");
@@ -89,19 +88,10 @@ public class StudentList {
 			System.out.println("Loading data ...");
 			try {
 				
-				boolean in_word = false;
-				int count = 0;
-				for (char c : getLineFromFile().toCharArray()) {
-					if (c == ' ') {
-						if (!in_word) {
-							count++;
-							in_word = true;
-						} else {
-							in_word = false;
-						}
-					}
-				}
-				System.out.println(count + " word(s) found " + a.length);
+				
+				
+				System.out.println(getLineFromFile().split(Constants.WORDS_SPLIT_REGEX).length/2 + " word(s) found " + Constants.MSG_WORDS_FOUND);
+
 			} 
 			catch (Exception e) {
 			}
