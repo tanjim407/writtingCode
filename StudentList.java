@@ -26,9 +26,8 @@ public class StudentList {
 		{
 			System.out.println("Loading data ...");
 			try {				
-				String studentName = getLineFromFile();
-				String StudentNames[] = studentName.split(", ");
-				for (String j : StudentNames) {
+				
+				for (String j : getLineFromFile().split(", ")) {
 					System.out.println(j.trim());
 		                           }
 			}
@@ -40,11 +39,9 @@ public class StudentList {
 			System.out.println("Loading data ...");
 			try {
 				
-				String studentName = getLineFromFile();
-				String i[] = studentName.split(", ");
-				Random random = new Random();
-				int y = random.nextInt(i.length);
-				System.out.println(i[y]);
+				
+				String i[] =  getLineFromFile().split(", ");
+				System.out.println(i[new Random().nextInt(i.length)]);
 			}
 			 catch (Exception e) {
 			}
@@ -57,11 +54,9 @@ public class StudentList {
 				
 				BufferedWriter bufferWritter=getFileBufferedWriter();
 				String t = args[0].substring(1);
-				Date date= new Date();
+				
 				String format = "dd/mm/yyyy-hh:mm:ss a";
-				DateFormat dateFormat = new SimpleDateFormat(format);
-				String formatDate = dateFormat.format(date);
-				s.write(", " + t + "\nList last updated on " + formatDate);
+				s.write(", " + t + "\nList last updated on " + new SimpleDateFormat(format).format(new Date()));
 				s.close();
 			} 
 			catch (Exception e) {
@@ -74,8 +69,8 @@ public class StudentList {
 			System.out.println("Loading data ...");
 			try {
 				
-				String r=getLineFromFile();
-				String i[] = r.split(", ");
+				
+				String i[] = getLineFromFile().split(", ");
 				boolean done = false;
 				String t = args[0].substring(1);
 				for (int idx = 0; idx < i.length && !done; idx++) {
@@ -93,11 +88,10 @@ public class StudentList {
 		 {
 			System.out.println("Loading data ...");
 			try {
-				String D = getLineFromFile();
-				char a[] = D.toCharArray();
+				
 				boolean in_word = false;
 				int count = 0;
-				for (char c : a) {
+				for (char c : getLineFromFile().toCharArray()) {
 					if (c == ' ') {
 						if (!in_word) {
 							count++;
