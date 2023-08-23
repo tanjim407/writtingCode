@@ -25,7 +25,7 @@ public class StudentList {
             return;
         }
 		// Check arguments
-		if (args[0].equals(Constants.ARG_LIST_DATA)) 
+		else if (args[0].equals(Constants.ARG_LIST_DATA)) 
 		{
 			System.out.println(Constants.MSG_LOADED_DATA);
 			try {				
