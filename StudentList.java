@@ -99,8 +99,9 @@ public class StudentList {
 		}
 
 		else{
-			System.out.println("argumrnts not found");
-			exit(1);
+			 
+				System.err.println("invaild arg");
+				System.exit(2);
 		}
 	}
 }
