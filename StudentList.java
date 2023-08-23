@@ -5,6 +5,17 @@ import java.util.Date;
 import java.util.Random;
 
 public class StudentList {
+
+	public static String getLineFromFile()throws Exception{
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+			String line = bufferedReader.readLine();
+			return line;
+	}
+
+	public static BufferedWriter getFileBufferedWriter() throws Exception {
+        return new BufferedWriter(new FileWriter("students.txt", true));
+    }
+	
 	public static void main(String[] args) {
 		if (args.length != 1) {
             System.err.println("Invalid number of arguments");
@@ -14,12 +25,8 @@ public class StudentList {
 		if (args[0].equals("a")) 
 		{
 			System.out.println("Loading data ...");
-			try {
-				BufferedReader students = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt"))
-								);
-				String studentName = students.readLine();
+			try {				
+				String studentName = getLineFromFile();
 				String StudentNames[] = studentName.split(", ");
 				for (String j : StudentNames) {
 					System.out.println(j.trim());
@@ -32,10 +39,8 @@ public class StudentList {
 		 {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader students = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String studentName = students.readLine();
+				
+				String studentName = getLineFromFile();
 				String i[] = studentName.split(", ");
 				Random random = new Random();
 				int y = random.nextInt(i.length);
@@ -49,8 +54,8 @@ public class StudentList {
 		  {
 			System.out.println("Loading data ...");
 			try {
-				BufferedWriter s = new BufferedWriter(
-						new FileWriter("students.txt", true));
+				
+				BufferedWriter bufferWritter=getFileBufferedWriter();
 				String t = args[0].substring(1);
 				Date date= new Date();
 				String format = "dd/mm/yyyy-hh:mm:ss a";
@@ -68,10 +73,8 @@ public class StudentList {
 		 {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String r = s.readLine();
+				
+				String r=getLineFromFile();
 				String i[] = r.split(", ");
 				boolean done = false;
 				String t = args[0].substring(1);
@@ -90,10 +93,7 @@ public class StudentList {
 		 {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
-						new InputStreamReader(
-								new FileInputStream("students.txt")));
-				String D = s.readLine();
+				String D = getLineFromFile();
 				char a[] = D.toCharArray();
 				boolean in_word = false;
 				int count = 0;
